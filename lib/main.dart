@@ -16,7 +16,7 @@ Future main() async {
 }
 
 class MyApp extends StatelessWidget {
-  static const String title = 'Drag & Drop ListViewzz';
+  static const String title = 'Drag & Drop ListView';
 
   @override
   Widget build(BuildContext context) => MaterialApp(
