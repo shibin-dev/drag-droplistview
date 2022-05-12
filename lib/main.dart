@@ -56,21 +56,24 @@ class _MainPage extends State<MainPage> {
         // lastItemTargetHeight: 50,
         // addLastItemTargetHeightToTop: true,
         // lastListTargetSize: 30,
+
+        axis: Axis.horizontal,
         listPadding: const EdgeInsets.all(16),
         listInnerDecoration: BoxDecoration(
           color: Theme.of(context).canvasColor,
           borderRadius: BorderRadius.circular(10),
         ),
         children: lists,
-        itemDivider: Divider(thickness: 2, height: 2, color: backgroundColor),
+        //  itemDivider: Divider(thickness: 2, height: 2, color: backgroundColor),
         itemDecorationWhileDragging: const BoxDecoration(
           color: Colors.white,
           boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 4)],
         ),
-        listDragHandle: buildDragHandle(isList: true),
-        itemDragHandle: buildDragHandle(),
+        // listDragHandle: buildDragHandle(isList: false),
+        // itemDragHandle: buildDragHandle(),
         onItemReorder: onReorderListItem,
         onListReorder: onReorderList,
+        listWidth: 250,
       ),
     );
   }
@@ -120,11 +123,8 @@ class _MainPage extends State<MainPage> {
     int newListIndex,
   ) {
     setState(() {
-      final oldListItems = lists[oldListIndex].children;
-      final newListItems = lists[newListIndex].children;
-
-      final movedItem = oldListItems.removeAt(oldItemIndex);
-      newListItems.insert(newItemIndex, movedItem);
+      var movedItem = lists[oldListIndex].children.removeAt(oldItemIndex);
+      lists[newListIndex].children.insert(newItemIndex, movedItem);
     });
   }
 
