@@ -55,8 +55,7 @@ class _MainPage extends State<MainPage> {
       body: DragAndDropLists(
         // lastItemTargetHeight: 50,
         // addLastItemTargetHeightToTop: true,
-        // lastListTargetSize: 30,
-
+        lastListTargetSize: 200,
         axis: Axis.horizontal,
         listPadding: const EdgeInsets.all(16),
         listInnerDecoration: BoxDecoration(
@@ -74,21 +73,6 @@ class _MainPage extends State<MainPage> {
         onItemReorder: onReorderListItem,
         onListReorder: onReorderList,
         listWidth: 250,
-      ),
-    );
-  }
-
-  DragHandle buildDragHandle({bool isList = false}) {
-    final verticalAlignment = isList
-        ? DragHandleVerticalAlignment.top
-        : DragHandleVerticalAlignment.center;
-    final color = isList ? Colors.blueGrey : Colors.black26;
-
-    return DragHandle(
-      verticalAlignment: verticalAlignment,
-      child: Container(
-        padding: const EdgeInsets.only(right: 10),
-        child: Icon(Icons.menu, color: color),
       ),
     );
   }
