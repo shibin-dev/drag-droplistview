@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 
 import 'data/draggable_lists.dart';
 import 'model/draggable_list.dart';
+import 'widget/dialog.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -50,12 +51,13 @@ class _MainPage extends State<MainPage> {
       backgroundColor: backgroundColor,
       appBar: AppBar(
         title: const Text(MyApp.title),
+        actions: [IconButton(onPressed: showForm, icon: const Icon(Icons.add))],
         centerTitle: true,
       ),
       body: DragAndDropLists(
         // lastItemTargetHeight: 50,
         // addLastItemTargetHeightToTop: true,
-        lastListTargetSize: 200,
+        lastListTargetSize: 70,
         axis: Axis.horizontal,
         listPadding: const EdgeInsets.all(16),
         listInnerDecoration: BoxDecoration(
@@ -72,7 +74,7 @@ class _MainPage extends State<MainPage> {
         // itemDragHandle: buildDragHandle(),
         onItemReorder: onReorderListItem,
         onListReorder: onReorderList,
-        listWidth: 250,
+        listWidth: 200,
       ),
     );
   }
@@ -87,14 +89,11 @@ class _MainPage extends State<MainPage> {
         ),
         children: list.items
             .map((item) => DragAndDropItem(
-                  child: ListTile(
-                    leading: Image.network(
-                      item.urlImage,
-                      width: 40,
-                      height: 40,
-                      fit: BoxFit.cover,
-                    ),
-                    title: Text(item.title),
+                  child: Container(
+                    height: 40,
+                    width: 150,
+                    color: Colors.blue,
+                    child: Center(child: Text(item.title)),
                   ),
                 ))
             .toList(),
@@ -120,5 +119,12 @@ class _MainPage extends State<MainPage> {
       final movedList = lists.removeAt(oldListIndex);
       lists.insert(newListIndex, movedList);
     });
+  }
+
+  showForm() {
+    return showDialog(
+      context: context,
+      builder: (context) => const ProductDialog(),
+    );
   }
 }
